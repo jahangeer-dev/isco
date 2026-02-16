@@ -1,0 +1,1292 @@
+/* -----------------------------------------------------------------------------
+ * ISCO Technologies - Modern Redesign
+ * -------------------------------------------------------------------------- */
+
+:root {
+    /* Primary - Professional Blue */
+    --primary-50: #E3F2FD;
+    --primary-100: #BBDEFB;
+    --primary-500: #2196F3;
+    --primary-600: #1E88E5;
+    --primary-700: #1976D2;
+
+    /* Secondary - Accent Cyan */
+    --secondary-400: #26C6DA;
+    --secondary-500: #00BCD4;
+
+    /* Neutrals */
+    --gray-50: #FAFAFA;
+    --gray-100: #F5F5F5;
+    --gray-200: #EEEEEE;
+    --gray-300: #E0E0E0;
+    --gray-600: #757575;
+    --gray-800: #424242;
+    --gray-900: #212121;
+
+    /* Semantic - Light Theme Default */
+    --background: #FFFFFF;
+    --surface: #FAFAFA;
+    --text-primary: #212121;
+    --text-secondary: #757575;
+    --border: #E0E0E0;
+
+    /* Variable mappins for existing components to new system */
+    --primary: var(--gray-900);
+    /* Dark text */
+    --accent: var(--primary-500);
+    --secondary: var(--secondary-500);
+    --text-main: var(--text-primary);
+    --text-muted: var(--text-secondary);
+    --bg-body: var(--background);
+    --bg-card: var(--surface);
+
+    /* Typography */
+    --font-main: 'Poppins', sans-serif;
+    --font-heading: 'Poppins', sans-serif;
+
+    /* Spacing System (8px Base) */
+    --space-1: 0.25rem;
+    /* 4px */
+    --space-2: 0.5rem;
+    /* 8px */
+    --space-3: 0.75rem;
+    /* 12px */
+    --space-4: 1rem;
+    /* 16px */
+    --space-6: 1.5rem;
+    /* 24px */
+    --space-8: 2rem;
+    /* 32px */
+    --space-12: 3rem;
+    /* 48px */
+    --space-16: 4rem;
+    /* 64px */
+
+    --container-width: 1280px;
+    --section-padding: var(--space-16) 0;
+    --bg-navbar-scrolled: rgba(255, 255, 255, 0.8);
+    /* Glassmorphism light */
+}
+
+/* Dark Theme Variables */
+body.dark-theme {
+    /* Dark Mode Adjustments */
+    --primary-400: #42A5F5;
+    --primary-500: #2196F3;
+
+    --gray-800: #1E1E1E;
+    --gray-900: #121212;
+    --gray-700: #2C2C2C;
+
+    --background: #121212;
+    --surface: #1E1E1E;
+    --text-primary: #FFFFFF;
+    --text-secondary: #B0B0B0;
+    --border: #2C2C2C;
+
+    /* Re-map to semantic variables */
+    --primary: var(--primary-50);
+    --text-main: var(--text-primary);
+    --text-muted: var(--text-secondary);
+    --bg-body: var(--background);
+    --bg-card: var(--surface);
+    --bg-navbar-scrolled: rgba(18, 18, 18, 0.8);
+    /* Glassmorphism dark */
+}
+
+/* Smooth Theme Transition */
+body,
+body * {
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* -----------------------------------------------------------------------------
+ * Reset & Base Styles
+ * -------------------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    color: var(--text-main);
+    line-height: 1.25;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-right: 15px;
+    padding: 5px;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--accent);
+    transform: rotate(15deg);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* -----------------------------------------------------------------------------
+ * Layout Utilities
+ * -------------------------------------------------------------------------- */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    /* Mobile padding */
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 32px;
+    }
+}
+
+.section {
+    padding: 96px 0;
+    /* Standard section padding */
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 64px;
+    max-width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    /* ~40px */
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text-main);
+    position: relative;
+    display: inline-block;
+}
+
+/* Optional: Subtle underline instead of text gradient */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    margin-top: 10px;
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    color: var(--secondary-500);
+    /* Accent color */
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 0 24px;
+    border-radius: 8px;
+    /* Slightly rounded */
+    font-weight: 600;
+    font-family: var(--font-main);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--primary-500);
+    color: white;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 14px 0 rgba(33, 150, 243, 0.39);
+}
+
+.btn-primary:hover {
+    background: var(--primary-600);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.23);
+    color: white;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid var(--text-muted);
+    color: var(--text-main);
+}
+
+.btn-secondary:hover {
+    background: rgba(33, 150, 243, 0.05);
+    border-color: var(--primary-500);
+    color: var(--primary-500);
+}
+
+/* -----------------------------------------------------------------------------
+ * Navbar
+ * -------------------------------------------------------------------------- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: var(--bg-navbar-scrolled);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.logo .highlight {
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    position: relative;
+    opacity: 0.8;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    /* Slightly thicker */
+    background: var(--primary-500);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--primary-500);
+}
+
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-main);
+    /* Changed from fixed white to variable */
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* -----------------------------------------------------------------------------
+ * Hero Section
+ * -------------------------------------------------------------------------- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(129, 140, 248, 0.1) 0%, transparent 40%);
+    z-index: -1;
+}
+
+.hero-section {
+    min-height: 100vh;
+    /* Changed from fixed height to min-height for responsiveness */
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+    /* Account for navbar */
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    width: 100%;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-visual {
+    flex: 1;
+    max-width: 600px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.tech-svg {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.2));
+}
+
+/* SVG Animations handled mostly by SMIL in HTML, but here are helper classes */
+.floating-node {
+    animation: floatNode 6s ease-in-out infinite;
+}
+
+.floating-node.delay-1 {
+    animation-delay: 0s;
+}
+
+.floating-node.delay-2 {
+    animation-delay: 2s;
+}
+
+.floating-node.delay-3 {
+    animation-delay: 4s;
+}
+
+@keyframes floatNode {
+
+    0%,
+    100% {
+        transform: translate(var(--tx, 0), var(--ty, 0)) translateY(0);
+    }
+
+    50% {
+        transform: translate(var(--tx, 0), var(--ty, 0)) translateY(-10px);
+    }
+}
+
+/* We need to set --tx and --ty for the keyframes to work with the transform logic 
+   Or simpler: just use translateY since the base translate is in the HTML transform attribute.
+   Actually, CSS transform overrides HTML transform attribute. 
+   So we should use a nested group for animation or simply rely on SMIL/simple generic floating.
+   Let's use a simpler float that doesn't override the position.
+*/
+
+/* Re-defining floating-node to keyframe on a child element or use relative movement if possible.
+   Since mapped positions are hardcoded in HTML translate, optimal CSS animation requires specific keyframes per node 
+   OR animating a child group.
+   Let's trust the SMIL in SVG for orbits and add a simple pulse here.
+*/
+
+.pulsing-node circle {
+    animation: pulseNode 2s infinite;
+}
+
+@keyframes pulseNode {
+    0% {
+        r: 8;
+        opacity: 1;
+    }
+
+    50% {
+        r: 10;
+        opacity: 0.7;
+    }
+
+    100% {
+        r: 8;
+        opacity: 1;
+    }
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    /* Responsive typography */
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: var(--text-main);
+}
+
+.hero-title span {
+    background: linear-gradient(135deg, var(--primary-500) 0%, var(--secondary-400) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 32px;
+    max-width: 600px;
+}
+
+/* Typing Effect Cursor */
+.typing-text {
+    border-right: 3px solid var(--accent);
+    padding-right: 5px;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* Animations */
+.animate-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* -----------------------------------------------------------------------------
+ * Features (SQRC)
+ * -------------------------------------------------------------------------- */
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    /* More space between cards */
+}
+
+.feature-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 32px;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-500);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.icon-wrapper {
+    width: 56px;
+    /* Standard size */
+    height: 56px;
+    background: rgba(33, 150, 243, 0.1);
+    /* 10% opacity primary */
+    border-radius: 50%;
+    /* Circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    color: var(--primary-500);
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.icon-wrapper svg {
+    width: 32px;
+    height: 32px;
+    stroke-width: 2;
+}
+
+.feature-card:hover .icon-wrapper {
+    background: var(--primary-500);
+    color: white;
+    transform: scale(1.1);
+}
+
+.feature-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* -----------------------------------------------------------------------------
+ * Portfolio
+ * -------------------------------------------------------------------------- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.portfolio-item {
+    background: var(--bg-card);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    /* Prevents cropping */
+    padding: 20px;
+    /* Adds breathing room */
+    display: block;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
+    transition: transform 0.5s ease;
+}
+
+.portfolio-item:hover .portfolio-img {
+    transform: scale(1.05);
+}
+
+.portfolio-content {
+    padding: 30px 25px;
+    text-align: center;
+    /* Center align text */
+    background: var(--bg-card);
+}
+
+.portfolio-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.portfolio-content p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.text-link {
+    color: var(--primary-500);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    /* Center the icon/text */
+    transition: all 0.3s ease;
+}
+
+.text-link:hover {
+    gap: 8px;
+    color: var(--primary-600);
+}
+
+/* -----------------------------------------------------------------------------
+ * Why Us
+ * -------------------------------------------------------------------------- */
+.dual-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+/* Accordion styles moved to end of file */
+
+/* Features List (Right Column) */
+.features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.feature-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.feature-item i {
+    font-size: 1.5rem;
+    color: var(--secondary);
+    background: rgba(129, 140, 248, 0.1);
+    padding: 15px;
+    border-radius: 50%;
+    margin-right: 15px;
+    /* Added explicit margin */
+    flex-shrink: 0;
+    /* Prevent icon shrinking */
+}
+
+.feature-item h4 {
+    font-family: var(--font-heading);
+    margin-bottom: 5px;
+    color: var(--text-main);
+}
+
+.feature-item p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* -----------------------------------------------------------------------------
+ * Footer
+ * -------------------------------------------------------------------------- */
+.footer {
+    background: var(--primary-light);
+    padding: 60px 0 20px;
+    margin-top: 100px;
+    border-top: 1px solid var(--border);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-links-col h4 {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+}
+
+.footer-links-col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    /* Increased spacing */
+}
+
+.footer-links-col a,
+.footer-links-col li {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.2s ease;
+}
+
+.footer-links-col a:hover {
+    color: var(--primary-500);
+    text-decoration: none;
+    transform: translateX(4px);
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+    color: var(--accent);
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    background: var(--gradient-main);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* -----------------------------------------------------------------------------
+ * Contact Section
+ * -------------------------------------------------------------------------- */
+.contact-form-wrapper {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 16px;
+    /* Increased padding */
+    background: var(--bg-body);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    /* Match button radius */
+    color: var(--text-main);
+    font-family: var(--font-main);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.15);
+    /* Visible focus ring */
+    background: var(--surface);
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.info-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    background: rgba(56, 189, 248, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.info-item h4 {
+    font-family: var(--font-heading);
+    margin-bottom: 5px;
+    color: var(--text-main);
+}
+
+.info-item p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* -----------------------------------------------------------------------------
+ * Responsive Design
+ * -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+    .hero-container {
+        flex-direction: column-reverse;
+        /* Visual on top/center, text below? Or Text top, visual bottom. Standard is Text Top. */
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .hero-content {
+        margin: 0 auto;
+    }
+
+    .hero-visual {
+        height: 400px;
+        /* Smaller visual on tablet */
+        width: 100%;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .dual-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        /* Below navbar */
+        left: 0;
+        width: 100%;
+        background: var(--bg-card);
+        flex-direction: column;
+        padding: 30px;
+        gap: 20px;
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+    }
+
+    .mobile-toggle {
+        display: block;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* -----------------------------------------------------------------------------
+ * Page Header & Breadcrumbs
+ * -------------------------------------------------------------------------- */
+.page-header {
+    background: var(--bg-card);
+    padding: 120px 0 60px;
+    /* More top padding for fixed navbar */
+    border-bottom: 1px solid var(--border);
+}
+
+.page-title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.breadcrumb a:hover {
+    color: var(--accent);
+}
+
+.breadcrumb i {
+    font-size: 0.7rem;
+}
+
+/* -----------------------------------------------------------------------------
+ * Content Layouts
+ * -------------------------------------------------------------------------- */
+.align-center {
+    align-items: center;
+}
+
+.content-body p {
+    margin-bottom: 20px;
+    color: var(--text-muted);
+}
+
+.bg-light {
+    background: var(--primary-light);
+    /* Or generic light variants */
+    /* Ensure this variable maps correctly in both themes */
+}
+
+/* In dark theme, bg-light might need to be just slightly lighter than body or same as card */
+body:not(.light-theme) .bg-light {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Services / Clients */
+.clients-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    align-items: center;
+}
+
+.client-logo {
+    width: 150px;
+    height: 80px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.client-logo:hover {
+    opacity: 1;
+}
+
+/* Responsive adjustments for reverse layout */
+@media (max-width: 992px) {
+    .reverse-mobile {
+        flex-direction: column-reverse;
+    }
+}
+
+/* -----------------------------------------------------------------------------
+ * Accordion (Restored)
+ * -------------------------------------------------------------------------- */
+.accordion-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 16px;
+}
+
+.accordion-item:hover {
+    border-color: var(--primary-500);
+}
+
+.accordion-header {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 20px 24px;
+    color: var(--text-main);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.accordion-header i {
+    color: var(--primary-500);
+    transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-header i {
+    transform: rotate(45deg);
+}
+
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 24px;
+    color: var(--text-secondary);
+}
+
+.accordion-item.active .accordion-body {
+    padding-bottom: 24px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Footer (Premium Dark Theme)
+ * -------------------------------------------------------------------------- */
+.footer {
+    background-color: #0F172A;
+    /* Rich Slate 900 */
+    color: #94A3B8;
+    /* Slate 400 */
+    padding-top: 80px;
+    margin-top: 0;
+    font-size: 0.95rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle pattern overlay or glow (optional) */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.3), transparent);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.footer-logo h3 {
+    color: #F8FAFC;
+    /* Slate 50 */
+    font-size: 1.75rem;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.footer-logo p {
+    color: #64748B;
+    /* Slate 500 */
+    line-height: 1.6;
+    margin-bottom: 24px;
+    max-width: 300px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+}
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    /* Very subtle white */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #F8FAFC;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-social a:hover {
+    background: var(--primary-500);
+    border-color: var(--primary-500);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.footer-links-col h4 {
+    color: #F8FAFC;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Accent underline for headings */
+.footer-links-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--primary-500);
+    border-radius: 1px;
+}
+
+.footer-links-col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.footer-links-col a {
+    color: #94A3B8;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.footer-links-col a:hover {
+    color: #38BDF8;
+    /* Sky 400 */
+    transform: translateX(4px);
+}
+
+/* Contact Column Enhancements */
+.footer-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-contact-info li {
+    display: flex;
+    align-items: flex-start;
+    /* Align icons with top of text */
+    gap: 16px;
+    font-size: 0.95rem;
+    color: #94A3B8;
+    line-height: 1.5;
+}
+
+.footer-contact-info i {
+    color: #38BDF8;
+    background: rgba(56, 189, 248, 0.1);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    /* Prevent icon squishing */
+    font-size: 0.9rem;
+}
+
+.footer-contact-info a {
+    color: #F8FAFC !important;
+    /* Make links white for contrast */
+    font-weight: 500;
+}
+
+.footer-contact-info a:hover {
+    color: #38BDF8 !important;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 32px;
+    padding-bottom: 32px;
+    text-align: center;
+    color: #64748B;
+    font-size: 0.875rem;
+}
